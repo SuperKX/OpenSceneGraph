@@ -76,7 +76,7 @@ public:
         _pluginMutex(pluginMutex) {}
 
 
-    ReaderWriter& operator * () { return *get(); }
+    ReaderWriter& operator * () { return *get(); }//操作符，返回不同的
     ReaderWriter* operator -> () { return get(); }
 
     bool valid() { return get()!=0; }
@@ -203,10 +203,10 @@ void PrintFilePathList(std::ostream& stream,const FilePathList& filepath)
     }
 }
 
-Registry* Registry::instance(bool erase)
+Registry* Registry::instance(bool erase)//若需要清理，返回一个清理后的registry，否则构建一个新的registry
 {
     static ref_ptr<Registry> s_registry = new Registry;
-    if (erase)
+    if (erase)//如果erase，则返回一个清理后的registry
     {
         s_registry->destruct();
         s_registry = 0;
@@ -488,7 +488,7 @@ Registry::~Registry()
     destruct();
 }
 
-void Registry::destruct()
+void Registry::destruct() //类似于析构作用，清除构建的registry
 {
     // OSG_NOTICE<<"Registry::destruct()"<<std::endl;
 
@@ -1165,8 +1165,8 @@ ReaderWriter::ReadResult Registry::read(const ReadFunctor& readFunctor)
 
             osgDB::Archive* archive = result.getArchive();
 
-            //if valid options were passed through the read functor clone them
-            //otherwise make new options
+            //if valid options were passed through the read functor clone them, otherwise make new options
+			//定义_options的位置：存在则复制，不存在则初始化一个。
             osg::ref_ptr<osgDB::ReaderWriter::Options> options = readFunctor._options ?
                 readFunctor._options->cloneOptions() :
                 new osgDB::ReaderWriter::Options;

@@ -386,7 +386,7 @@ class OSGDB_EXPORT Registry : osg::depends_on<OpenThreads::Mutex*, osg::Referenc
 
 
         void setOptions(Options* opt) { _options = opt; }
-        Options* getOptions() { return _options.get(); }
+        Options* getOptions() { return _options.get(); } //·µ»Øoptions
         const Options*  getOptions() const { return _options.get(); }
 
 

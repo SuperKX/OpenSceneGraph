@@ -65,7 +65,7 @@ HeightField* osgDB::readHeightFieldFile(const std::string& filename,const Option
 }
 
 
-Node* osgDB::readNodeFile(const std::string& filename,const Options* options)
+Node* osgDB::readNodeFile(const std::string& filename,const Options* options) //读入osgb等格式文件。
 {
     ReaderWriter::ReadResult rr = Registry::instance()->readNode(filename,options);
     if (rr.validNode()) return rr.takeNode();
